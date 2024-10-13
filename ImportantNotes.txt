@@ -1,0 +1,94 @@
+====================  IMPORTANT NOTES  ======================================
+
+===============================BACKEND==========================================
+
+Way of require anything 
+const express = require("express"); // method 1
+method 2 ===> import express from "express" // to change  after  pacage.json aftert main "type": "module"
+
+
+Steps
+
+(1) --> sabse pahle folder banaya desktop me then npm install kiya for backend ke liye frontend bhii banya 
+then MVC (views not use we use react ) banaya
+(2) --> config ke andar jake --> database.js banaya then mongodb me setup kiya with new database
+
+(3)--> create models means layout of database chat ka date bhejne wala ka name bluprint type
+timestamp is basically store real time
+
+(4) bcrypt use hota hai hashedPassword banane ke liye
+(5) howq to fit avatar -> placeholder search in google and use their API
+
+//hhtps://localhost:Port/api/v1/user/register --> basically iske liye maine controller ke andar logic likha hai then routes ke andar   jake routes create krke bas method diya hai 
+then in sabko index.js se connect kr diya hai 
+
+
+// userController me jo username ko match kara rahe hai wo liogin me ise direct database se match kara sakte hai but we dont need to match directly in password 
+because using the bcrypt password is changed hashedPassword we need to match direct that hashedPassword 
+if its matched then return true else false
+
+(6)
+// JWT as generate token it said based on that user is logged in or not
+The jwt.sign() function takes three parameters:
+
+Payload: The data you want to store in the token (e.g., id and username).
+Secret Key: Used to sign the token. This should be a secure key, typically stored in environment variables.
+Options (like expiration time): Additional settings like when the token should expire.
+
+(7)
+store this token in cookies --> cookies are generally wo chij hai jo ek page apne aap ko yad krwata hai ki ha ki is page par maine visit kiya 
+(8) loggout krte time jo cookie save kiye the page se use hi hata denge (maxAge ko agar 0 kr diye to usme koi expire value nahi rahegi)
+logout post nahi get request hogi kyunki ham kuch bhi receive nahi kr rhe hai
+
+(8)--> create middleware for authentication  authentication ke pahle check krega ki user login hai ki nahi .. agar hai to middleware ke base pr hi use work karawo then middleware ke bad (req , res , next)--> next ko call  kr do
+(a)--> [middleware]--> (isAuthenticated.js)--> jiske andar jo tocken cookie me strore karaye the use lekar gye 
+(b)--> jb bhi cookie ko store kare to kuch nhi lgta hai aur ab cookie jo kahi use karenge ya fir kahi par pass kar rahe hai tab cookie-parser ka use hota hai --> main index.js me import kar  lo 
+---> AUTHENICATE  ke liye logic--> jo token cookies me store kiye hai use le lo aur secret key ko jwt.verify(token , process.env.secret_key) ko check kro then next() ko call kr do
+
+(9)
+// Then create new controller for message
+so we take two variable senderId and receiverId 
+sender -> means jo phle se logged in hai req.id
+receiver req.params.id
+message-> req.body
+//got conversation me kiske kiske bich me conversation chal raha hai usko dekhenge 
+participants hai unke andar [sendId aur receiverId lenge]
+then create newMessage using messageModel 
+
+//to  phale message model banaye the
+then uska controller banye 
+ then jo message ayega usko newMessage me create kiye
+ then socket io ka use karke real time message show karenge
+
+
+(10)-->
+// then create getMessage in messageController means that message ko get kon kar rha hai receiverId
+// and now receiverId ke jariye main findOne karunga
+import NOTE---> // ab yadi console me main conversation.message print karau to sirft uska object id milega isliye use populate(messages)karunga populate karta hai ki us objectId ko dhundega aue uske andar se jo mang  rhe ho wo return krta hai
+
+
+===============================FRONTEND==========================================
+For ui we use daisyui.com + tailwind + glassmorphism-->effect bluer
+basic setup of above configs
+then create  route home login and signup using react-router-dom
+then create an useState basically it takes user and setUser 
+then initially  user set to be empty
+value that is define each input field 
+and onChange also define in  input
+For gender --> we make another function and handleGender changed
+so same this  you have to do in login form and modi fy as per your required!!
+
+// and instance of this console we want to store in database and 
+and use cors and toast is just like and flash msg with extra design..
+
+(11)--> after that we use redux toolkit in globally like tumhe data chahiye use direct peack kr sakte ho redux toolkit easy banata hai
+// then we create slice for user and message all the code in standard form that can contain chunk code 
+
+user?.fullName--> optional chaining
+socket io --> backend
+socket io client --> frontend
+
+
+6:1
+import MessegeSenderInput from "./SendInput";
+import AllMessages from "./AllMessages";
