@@ -29,7 +29,7 @@ Make sure you have the following installed:
 Node.js: Download and install Node.js
 npm or yarn: Node.js package managers
 # Project Structure
-├── backend
+[├── backend
 │   ├── index.js         # Entry point of the Node.js server
 │   ├── socket.js        # Handles socket events
 │   ├── models           # Mongoose models (optional)
@@ -44,3 +44,4 @@ npm or yarn: Node.js package managers
 │   │   └── index.js     # Entry point of the React app
 │
 └── README.md            # Project documentation
+](https://github.com/Satish2004/Chat_APP/issues/1#issue-2583773452)
